@@ -68,9 +68,9 @@ func update_label():
 	var m := (total % 3600) / 60
 	var s := total % 60
 	if h > 0:
-		$Timer.text = "%02d:%02d:%02d" % [h, m, s]
+		$Timer/Label.text = "%02d:%02d:%02d" % [h, m, s]
 	else:
-		$Timer.text = "%02d:%02d" % [m, s]
+		$Timer/Label.text = "%02d:%02d" % [m, s]
 
 func _on_start_pressed():
 	running = true
