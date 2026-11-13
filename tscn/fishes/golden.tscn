@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://by4usym1gcnhd" path="res://assets/fishes/golden.png" id="1_4ehtl"]
 [ext_resource type="Script" uid="uid://cv1satndn30td" path="res://scripts/golden.gd" id="2_resmc"]
+[ext_resource type="Script" path="res://scripts/water_wake.gd" id="3_water_wake"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_resmc"]
 atlas = ExtResource("1_4ehtl")
@@ -139,8 +140,11 @@ animations = [{
 }]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" unique_id=451128340]
+texture_filter = 1
 position = Vector2(408, 216)
 sprite_frames = SubResource("SpriteFrames_vgvsi")
-animation = &"up"
-frame_progress = 0.75740296
+animation = &"right"
 script = ExtResource("2_resmc")
+
+[node name="WaterWake" type="Node2D" parent="."]
+script = ExtResource("3_water_wake")

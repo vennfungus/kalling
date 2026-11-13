@@ -11,10 +11,10 @@ shader = ExtResource("3_8kplt")
 shader_parameter/wave_speed = 2.0
 shader_parameter/wave_strength = 0.005
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_a7rub"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qtm2r"]
 shader = ExtResource("2_qtm2r")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qtm2r"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a7rub"]
 shader = ExtResource("2_qtm2r")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8kplt"]
@@ -26,6 +26,10 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_ewaw7")
+
+[node name="SoundPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1126647465]
+position = Vector2(64, 640)
+stream = ExtResource("3_8wxc5")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=2109909734]
 layout_mode = 1
@@ -39,7 +43,10 @@ offset_bottom = 1558.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_g6ans")
+expand_mode = 1
 stretch_mode = 6
+
+[node name="FishContainer" type="Node2D" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="TextureRect" unique_id=1232988255]
 material = SubResource("ShaderMaterial_6gxhg")
@@ -86,6 +93,12 @@ theme_override_constants/v_separation = 128
 columns = 3
 metadata/_edit_use_anchors_ = true
 
+[node name="Fishing" type="Button" parent="GridContainer" unique_id=231959485]
+material = SubResource("ShaderMaterial_qtm2r")
+custom_minimum_size = Vector2(106, 106)
+layout_mode = 2
+text = "Animation"
+
 [node name="Start" type="Button" parent="GridContainer" unique_id=776300080]
 material = SubResource("ShaderMaterial_a7rub")
 custom_minimum_size = Vector2(106, 106)
@@ -106,11 +119,6 @@ material = SubResource("ShaderMaterial_qtm2r")
 custom_minimum_size = Vector2(106, 106)
 layout_mode = 2
 
-[node name="Fishing" type="Button" parent="GridContainer" unique_id=231959485]
-material = SubResource("ShaderMaterial_qtm2r")
-custom_minimum_size = Vector2(106, 106)
-layout_mode = 2
-
 [node name="Reset" type="Button" parent="GridContainer" unique_id=473573824]
 material = SubResource("ShaderMaterial_qtm2r")
 custom_minimum_size = Vector2(106, 106)
@@ -118,15 +126,12 @@ layout_mode = 2
 
 [node name="Pause" type="Button" parent="GridContainer" unique_id=42848244]
 material = SubResource("ShaderMaterial_8kplt")
+custom_minimum_size = Vector2(106, 106)
 layout_mode = 2
 
-[node name="SoundPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1126647465]
-position = Vector2(64, 640)
-stream = ExtResource("3_8wxc5")
-
+[connection signal="pressed" from="GridContainer/Fishing" to="." method="_on_fishing_pressed"]
 [connection signal="pressed" from="GridContainer/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="GridContainer/Record" to="." method="_on_record_pressed"]
 [connection signal="pressed" from="GridContainer/Sound" to="." method="_on_sound_pressed"]
-[connection signal="pressed" from="GridContainer/Fishing" to="." method="_on_fishing_pressed"]
 [connection signal="pressed" from="GridContainer/Reset" to="." method="_on_reset_pressed"]
 [connection signal="pressed" from="GridContainer/Pause" to="." method="_on_pause_pressed"]
