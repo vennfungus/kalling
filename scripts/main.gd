@@ -2,6 +2,8 @@ extends Control
 
 var elapsed := 0.0				# Elapsed time in seconds
 var running := false
+var recording := false
+var recording_elapsed := 0.0
 var fishes_active := false
 var fish_spawner := FishSpawner.new()
 
@@ -13,16 +15,24 @@ func _process(delta):
 	if running:
 		elapsed += delta
 		update_label()
+	if recording:
+		recording_elapsed += delta
+		update_recording_label()
 
 func update_label():
-	var total := int(elapsed)
+	$Timer/Label.text = _format_time(elapsed)
+
+func update_recording_label():
+	$RecordingLabel.text = "Recording " + _format_time(recording_elapsed)
+
+func _format_time(time_in_seconds: float) -> String:
+	var total := int(time_in_seconds)
 	var h := total / 3600
 	var m := (total % 3600) / 60
 	var s := total % 60
 	if h > 0:
-		$Timer/Label.text = "%02d:%02d:%02d" % [h, m, s]
-	else:
-		$Timer/Label.text = "%02d:%02d" % [m, s]
+		return "%02d:%02d:%02d" % [h, m, s]
+	return "%02d:%02d" % [m, s]
 
 func _on_start_pressed():
 	running = true
@@ -48,7 +58,15 @@ func _on_sound_pressed():
 		_lightning($GridContainer/Sound)   # Sáng đèn nút
 
 func _on_record_pressed():
-	pass
+	recording = not recording
+	if recording:
+		recording_elapsed = 0.0
+		$RecordingLabel.visible = true
+		update_recording_label()
+		_lightning($GridContainer/Record)
+	else:
+		$RecordingLabel.visible = false
+		_delightning($GridContainer/Record)
 
 func _on_fishing_pressed():
 	fishes_active = not fishes_active 
