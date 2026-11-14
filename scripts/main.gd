@@ -5,6 +5,7 @@ var running := false
 var recording := false
 var recording_elapsed := 0.0
 var fishes_active := false
+var show_saved_note := false
 var fish_spawner := FishSpawner.new()
 
 func _ready():
@@ -20,9 +21,13 @@ func _process(delta):
 		update_recording_label()
 
 func update_label():
+	if show_saved_note:
+		return # Đang hiển thị thông báo thì không đè lên
 	$Timer/Label.text = _format_time(elapsed)
 
 func update_recording_label():
+	if show_saved_note:
+		return # Đang hiển thị thông báo thì không đè lên
 	$RecordingLabel.text = "Recording " + _format_time(recording_elapsed)
 
 func _format_time(time_in_seconds: float) -> String:
@@ -36,6 +41,7 @@ func _format_time(time_in_seconds: float) -> String:
 
 func _on_start_pressed():
 	running = true
+	update_label()
 
 func _on_pause_pressed():
 	if running == true:
@@ -67,6 +73,13 @@ func _on_record_pressed():
 	else:
 		$RecordingLabel.visible = false
 		_delightning($GridContainer/Record)
+		# Hiển thị thông báo trên nhãn Record, cùng size/màu/font, trong 1.5s
+		show_saved_note = true
+		$RecordingLabel.visible = true
+		$RecordingLabel.text = "Recording saved"
+		await get_tree().create_timer(1.5).timeout
+		show_saved_note = false
+		$RecordingLabel.visible = false
 
 func _on_fishing_pressed():
 	fishes_active = not fishes_active 
