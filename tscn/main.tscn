@@ -5,6 +5,15 @@
 [ext_resource type="Shader" uid="uid://dncqmramghylf" path="res://assets/shader/circle.gdshader" id="2_qtm2r"]
 [ext_resource type="Shader" uid="uid://btfcl1y6nolor" path="res://assets/shader/bg.gdshader" id="3_8kplt"]
 [ext_resource type="AudioStream" uid="uid://c6hija6g3didw" path="res://assets/sounds/000.wav" id="3_8wxc5"]
+[ext_resource type="Texture2D" uid="uid://c02tfog1lccmr" path="res://assets/icons/power.png" id="6_power"]
+[ext_resource type="Texture2D" uid="uid://83g8qwf1bix1" path="res://assets/icons/start.png" id="6_uf0e4"]
+[ext_resource type="Texture2D" uid="uid://c6qh4feycmpm3" path="res://assets/icons/fishing.png" id="7_hegun"]
+[ext_resource type="Texture2D" uid="uid://c5ie08e285sot" path="res://assets/icons/mute.png" id="9_mn6q8"]
+[ext_resource type="Texture2D" uid="uid://c2u0lfvv7id0g" path="res://assets/icons/pause.png" id="9_pause"]
+[ext_resource type="Texture2D" uid="uid://bb0fuvoe04i7f" path="res://assets/icons/speaker.png" id="10_speaker"]
+[ext_resource type="Texture2D" uid="uid://y8cnsstauwlj" path="res://assets/icons/sound.png" id="10_tfptk"]
+[ext_resource type="Texture2D" uid="uid://bm6yh6iax8p8r" path="res://assets/icons/mainmenu.png" id="13_k3nvp"]
+[ext_resource type="Texture2D" uid="uid://deyyvpxkeoe65" path="res://assets/icons/add_fish.png" id="14_b7fts"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6gxhg"]
 shader = ExtResource("3_8kplt")
@@ -127,52 +136,69 @@ metadata/_edit_use_anchors_ = true
 material = SubResource("ShaderMaterial_a7rub")
 custom_minimum_size = Vector2(106, 106)
 layout_mode = 2
+icon = ExtResource("6_uf0e4")
+expand_icon = true
 
 [node name="Fishing" type="Button" parent="GridContainer" unique_id=231959485]
 material = SubResource("ShaderMaterial_qtm2r")
 custom_minimum_size = Vector2(106, 106)
 layout_mode = 2
-text = "Animation"
+icon = ExtResource("7_hegun")
+expand_icon = true
 
 [node name="Reset" type="Button" parent="GridContainer" unique_id=473573824]
 material = SubResource("ShaderMaterial_qtm2r")
 custom_minimum_size = Vector2(106, 106)
 layout_mode = 2
+icon = ExtResource("6_power")
+expand_icon = true
 
-[node name="Keypad" type="Button" parent="GridContainer" unique_id=675095831]
+[node name="Mute" type="Button" parent="GridContainer" unique_id=675095831]
 material = SubResource("ShaderMaterial_a7rub")
 custom_minimum_size = Vector2(106, 106)
 layout_mode = 2
+icon = ExtResource("9_mn6q8")
+expand_icon = true
 
 [node name="Record" type="Button" parent="GridContainer" unique_id=1696279826]
 material = SubResource("ShaderMaterial_qtm2r")
 custom_minimum_size = Vector2(106, 106)
 layout_mode = 2
+icon = ExtResource("10_tfptk")
+expand_icon = true
 
 [node name="Pause" type="Button" parent="GridContainer" unique_id=42848244]
 material = SubResource("ShaderMaterial_8kplt")
 custom_minimum_size = Vector2(106, 106)
 layout_mode = 2
+icon = ExtResource("9_pause")
+expand_icon = true
 
 [node name="Sound" type="Button" parent="GridContainer" unique_id=1983439698]
 material = SubResource("ShaderMaterial_qtm2r")
 custom_minimum_size = Vector2(106, 106)
 layout_mode = 2
+icon = ExtResource("10_speaker")
+expand_icon = true
 
 [node name="MainMenu" type="Button" parent="GridContainer" unique_id=1417665795]
 material = SubResource("ShaderMaterial_qtm2r")
 custom_minimum_size = Vector2(106, 106)
 layout_mode = 2
+icon = ExtResource("13_k3nvp")
+expand_icon = true
 
 [node name="Add_fish" type="Button" parent="GridContainer" unique_id=1433301192]
 material = SubResource("ShaderMaterial_qtm2r")
 custom_minimum_size = Vector2(106, 106)
 layout_mode = 2
-text = "Animation"
+icon = ExtResource("14_b7fts")
+expand_icon = true
 
 [connection signal="pressed" from="GridContainer/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="GridContainer/Fishing" to="." method="_on_fishing_pressed"]
 [connection signal="pressed" from="GridContainer/Reset" to="." method="_on_reset_pressed"]
+[connection signal="pressed" from="GridContainer/Mute" to="." method="_on_mute_pressed"]
 [connection signal="pressed" from="GridContainer/Record" to="." method="_on_record_pressed"]
 [connection signal="pressed" from="GridContainer/Pause" to="." method="_on_pause_pressed"]
 [connection signal="pressed" from="GridContainer/Sound" to="." method="_on_sound_pressed"]

@@ -5,6 +5,7 @@ var running := false
 var recording := false
 var recording_elapsed := 0.0
 var fishes_active := false
+var muted := false
 var show_saved_note := false
 var fish_spawner := FishSpawner.new()
 
@@ -55,6 +56,13 @@ func _on_pause_pressed():
 func _on_reset_pressed():
 	get_tree().quit()
 
+func _on_mute_pressed():
+	muted = not muted
+	if muted:
+		_lightning($GridContainer/Mute)
+	else:
+		_delightning($GridContainer/Mute)
+
 func _on_sound_pressed():
 	if $SoundPlayer.playing:
 		$SoundPlayer.stop() # Nếu đang phát thì dừng lại
@@ -90,8 +98,17 @@ func _on_fishing_pressed():
 		_delightning($GridContainer/Fishing)
 		fish_spawner.clear_fishes($FishContainer)
 
-func _lightning(node: Node):
-	node.modulate = Color8(135, 206, 235)
+func _lightning(node: Button):
+	var highlight := StyleBoxFlat.new()
+	highlight.bg_color = Color8(135, 206, 235, 150)
+	highlight.corner_radius_top_left = 53
+	highlight.corner_radius_top_right = 53
+	highlight.corner_radius_bottom_left = 53
+	highlight.corner_radius_bottom_right = 53
+	for state in ["normal", "hover", "pressed", "hover_pressed", "focus"]:
+		node.add_theme_stylebox_override(state, highlight)
 
-func _delightning(node: Node):
-	node.modulate = Color(1, 1, 1)
+func _delightning(node: Button):
+	for state in ["normal", "hover", "pressed", "hover_pressed", "focus"]:
+		node.remove_theme_stylebox_override(state)
+	node.modulate = Color.WHITE
