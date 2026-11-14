@@ -98,6 +98,10 @@ func _on_fishing_pressed():
 		_delightning($GridContainer/Fishing)
 		fish_spawner.clear_fishes($FishContainer)
 
+func _on_add_fish_pressed():
+	if fishes_active:
+		fish_spawner.spawn_fishes($FishContainer, 1)
+
 func _lightning(node: Button):
 	var highlight := StyleBoxFlat.new()
 	highlight.bg_color = Color8(135, 206, 235, 150)

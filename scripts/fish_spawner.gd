@@ -17,12 +17,12 @@ func load_fish_data_from_json() -> void:
 	fish_database = json_data
 	print("Successfully loaded data: ", fish_database.size(), " species!")
 
-func spawn_fishes(container: Node2D) -> void:
+func spawn_fishes(container: Node2D, amount: int = 5) -> void:
 	if fish_database.is_empty():
 		push_error("Fish database is empty.")
 		return
 
-	for _i in range(5):
+	for _i in range(amount):
 		var fish_info: Variant = fish_database.pick_random()
 		if not fish_info is Dictionary:
 			push_error("Fish database entries must be JSON objects.")

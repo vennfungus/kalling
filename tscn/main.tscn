@@ -202,3 +202,4 @@ expand_icon = true
 [connection signal="pressed" from="GridContainer/Record" to="." method="_on_record_pressed"]
 [connection signal="pressed" from="GridContainer/Pause" to="." method="_on_pause_pressed"]
 [connection signal="pressed" from="GridContainer/Sound" to="." method="_on_sound_pressed"]
+[connection signal="pressed" from="GridContainer/Add_fish" to="." method="_on_add_fish_pressed"]
