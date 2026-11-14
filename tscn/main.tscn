@@ -11,10 +11,20 @@ shader = ExtResource("3_8kplt")
 shader_parameter/wave_speed = 2.0
 shader_parameter/wave_strength = 0.005
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qtm2r"]
-shader = ExtResource("2_qtm2r")
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_LabelBlock"]
+bg_color = Color(0.1, 0.2, 0.25, 0.8)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+anti_aliasing_size = 10.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_g6ans"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_a7rub"]
+shader = ExtResource("2_qtm2r")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qtm2r"]
 shader = ExtResource("2_qtm2r")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8kplt"]
@@ -58,6 +68,14 @@ color = Color(1, 1, 1, 0)
 
 [node name="FishContainer" type="Node2D" parent="." unique_id=1561626871]
 
+[node name="LabelBlock" type="PanelContainer" parent="." unique_id=1614785178]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 72.0
+offset_right = 656.0
+offset_bottom = 520.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_LabelBlock")
+
 [node name="Timer" type="Label" parent="." unique_id=840492208]
 layout_mode = 1
 anchors_preset = -1
@@ -65,10 +83,11 @@ anchor_left = 3.3000002
 anchor_top = 1.8000001
 anchor_right = 14.800001
 anchor_bottom = 12.6
-offset_top = -8.0
+offset_top = 72.0
 offset_right = -6.1035156e-05
-offset_bottom = 8.0
+offset_bottom = -40.0
 theme_override_font_sizes/font_size = 128
+label_settings = SubResource("LabelSettings_g6ans")
 horizontal_alignment = 1
 
 [node name="Label" type="Label" parent="Timer" unique_id=979798630]
@@ -104,14 +123,19 @@ theme_override_constants/v_separation = 128
 columns = 3
 metadata/_edit_use_anchors_ = true
 
+[node name="Start" type="Button" parent="GridContainer" unique_id=776300080]
+material = SubResource("ShaderMaterial_a7rub")
+custom_minimum_size = Vector2(106, 106)
+layout_mode = 2
+
 [node name="Fishing" type="Button" parent="GridContainer" unique_id=231959485]
 material = SubResource("ShaderMaterial_qtm2r")
 custom_minimum_size = Vector2(106, 106)
 layout_mode = 2
 text = "Animation"
 
-[node name="Start" type="Button" parent="GridContainer" unique_id=776300080]
-material = SubResource("ShaderMaterial_a7rub")
+[node name="Reset" type="Button" parent="GridContainer" unique_id=473573824]
+material = SubResource("ShaderMaterial_qtm2r")
 custom_minimum_size = Vector2(106, 106)
 layout_mode = 2
 
@@ -125,18 +149,18 @@ material = SubResource("ShaderMaterial_qtm2r")
 custom_minimum_size = Vector2(106, 106)
 layout_mode = 2
 
+[node name="Pause" type="Button" parent="GridContainer" unique_id=42848244]
+material = SubResource("ShaderMaterial_8kplt")
+custom_minimum_size = Vector2(106, 106)
+layout_mode = 2
+
 [node name="Sound" type="Button" parent="GridContainer" unique_id=1983439698]
 material = SubResource("ShaderMaterial_qtm2r")
 custom_minimum_size = Vector2(106, 106)
 layout_mode = 2
 
-[node name="Reset" type="Button" parent="GridContainer" unique_id=473573824]
+[node name="MainMenu" type="Button" parent="GridContainer" unique_id=1417665795]
 material = SubResource("ShaderMaterial_qtm2r")
-custom_minimum_size = Vector2(106, 106)
-layout_mode = 2
-
-[node name="Pause" type="Button" parent="GridContainer" unique_id=42848244]
-material = SubResource("ShaderMaterial_8kplt")
 custom_minimum_size = Vector2(106, 106)
 layout_mode = 2
 
@@ -146,9 +170,9 @@ custom_minimum_size = Vector2(106, 106)
 layout_mode = 2
 text = "Animation"
 
-[connection signal="pressed" from="GridContainer/Fishing" to="." method="_on_fishing_pressed"]
 [connection signal="pressed" from="GridContainer/Start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="GridContainer/Record" to="." method="_on_record_pressed"]
-[connection signal="pressed" from="GridContainer/Sound" to="." method="_on_sound_pressed"]
+[connection signal="pressed" from="GridContainer/Fishing" to="." method="_on_fishing_pressed"]
 [connection signal="pressed" from="GridContainer/Reset" to="." method="_on_reset_pressed"]
+[connection signal="pressed" from="GridContainer/Record" to="." method="_on_record_pressed"]
 [connection signal="pressed" from="GridContainer/Pause" to="." method="_on_pause_pressed"]
+[connection signal="pressed" from="GridContainer/Sound" to="." method="_on_sound_pressed"]
