@@ -28,6 +28,14 @@ corner_radius_bottom_right = 24
 corner_radius_bottom_left = 24
 anti_aliasing_size = 10.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_TitleBlock"]
+bg_color = Color(0.16, 0.34, 0.4, 0.95)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+anti_aliasing_size = 10.0
+
 [sub_resource type="LabelSettings" id="LabelSettings_g6ans"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_a7rub"]
@@ -85,6 +93,37 @@ offset_right = 656.0
 offset_bottom = 520.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_LabelBlock")
 
+[node name="TitleBlock" type="PanelContainer" parent="." unique_id=58266270]
+layout_mode = 0
+offset_left = 89.0
+offset_top = 48.0
+offset_right = 633.0
+offset_bottom = 134.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_TitleBlock")
+
+[node name="Title" type="Label" parent="TitleBlock" unique_id=1882364036]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0.24705882, 1)
+theme_override_font_sizes/font_size = 47
+text = "Stereo Heart"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TitleBlock2" type="PanelContainer" parent="." unique_id=338237293]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 125.0
+offset_right = 600.0
+offset_bottom = 177.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_TitleBlock")
+
+[node name="Title" type="Label" parent="TitleBlock2" unique_id=1794805059]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Incomming Calling"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Timer" type="Label" parent="." unique_id=840492208]
 layout_mode = 1
 anchors_preset = -1
@@ -104,6 +143,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 11.0
+offset_bottom = 11.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 128
