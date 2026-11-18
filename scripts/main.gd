@@ -10,6 +10,9 @@ var show_saved_note := false
 var fish_spawner := FishSpawner.new()
 
 func _ready():
+	# Force portrait orientation on mobile
+	if OS.has_feature("mobile"):
+		DisplayServer.screen_set_orientation(DisplayServer.SCREEN_PORTRAIT)
 	fish_spawner.load_fish_data_from_json()
 
 #---- Timer / Counter Logic ----#
